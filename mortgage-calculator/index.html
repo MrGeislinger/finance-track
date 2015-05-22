@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mortgage Calculator</title>
+	<script
+	  src="components/webcomponentsjs/webcomponents.js">
+	</script>
+	<link rel="import"
+	  href="components/core-toolbar/core-toolbar.html">
+	<link rel="import"
+	  href="components/core-menu/core-menu.html">
+	<link rel="import"
+	  href="components/core-item/core-item.html">
+	<link rel="import"
+	  href="components/core-header-panel/core-header-panel.html">
+	<link rel="import"
+	  href="components/core-drawer-panel/core-drawer-panel.html">
+	<link rel="import"
+	  href="components/core-scaffold/core-scaffold.html">
+    <link rel="import" 
+    	href="components/paper-slider/paper-slider.html">
+
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+
+	<style>
+		#navheader {
+		  background-color: #08ce54;
+		}
+		.content {
+		  padding: 20px;
+		}
+	</style>
+</head>
+<body>
+	<core-scaffold id="core-scaffold" responsiveWidth="1000px" drawerWidth="512px">
+	<core-header-panel navigation flex>
+		<core-toolbar id="navheader">
+			<div id="navheader-title">Inputs</div>
+		</core-toolbar>
+		<core-menu style="width:70%;float:right;">
+			<div hidden>
+				<h2>Income</h2>
+				<h4>Income#1:</h4> 
+				<core-item >
+					<input id="income1-input" name="income1_input" type="text" value="60000" size="8">
+					<paper-slider d="income1-input" onchange="drawChart()" value="60000" max="300000" pin editable></paper-slider>
+			    </core-item>
+			    <h4>Income#2:</h4> 
+				<core-item >
+					<paper-slider d="income2-input" onchange="drawChart()" value="40000" max="300000" pin editable></paper-slider>
+			    </core-item>
+		    </div>
+		    <div >
+			    <hr/>
+			    <h2>Mortgage</h2>
+			    <h4>Cost of home:</h4> 
+			  	<core-item>
+					<input onkeyup="drawChart()" id="home-cost-input" type="text" name="home_cost" value="750000">
+				</core-item>
+				<h4>Percent down:</h4> 
+				<core-item>
+					<paper-slider id="percent-down-input" onchange="drawChart()" value="5" max="99" pin editable></paper-slider>
+				</core-item>
+				<h4>APR:</h4>
+				<core-item>
+					<paper-slider id="apr-input" onchange="drawChart()" step="0.1" value="3.8" max="10" pin editable></paper-slider>
+				</core-item>
+				<h4>Term (in years):</h4>
+				<core-item>
+					<paper-slider id="term-input" onchange="drawChart()" value="15" max="30" pin editable></paper-slider>
+				</core-item>
+			</div>
+			<div>
+				<hr/>
+			    <h2>Savings</h2>
+			    <h4>Monthly Savings:</h4> 
+			  	<core-item>
+					<paper-slider id="savings-input" onchange="drawChart()" step="50" value="3000" max="8000" pin editable></paper-slider>
+				</core-item>
+				<h4>Savings Growth:</h4> 
+			  	<core-item>
+					<paper-slider id="savings-growth-input" onchange="drawChart()" step="0.1" value="5.0" max="12" pin editable></paper-slider>
+				</core-item>
+			</div>
+			<div>
+				<hr/>
+			    <h2>Spending</h2>
+			    <h4>Monthly Spendings:</h4> 
+			  	<core-item>
+					<paper-slider id="spending-input" onchange="drawChart()" step="50" value="3000" max="8000" pin editable></paper-slider>
+				</core-item>
+				<h4>Time Period:</h4> 
+			  	<core-item>
+					<paper-slider id="time-period-input" onchange="drawChart()" value="20" max="60" pin editable></paper-slider>
+				</core-item>
+			</div>
+		</core-menu>
+	</core-header-panel>
+	  <div tool>Results</div>
+	  <div class="content" fit>
+	    <div id="chart_div" style="width:100%; height: 500px;"></div>
+  		<div id="summary">
+			<h2>Summary</h2>
+			<h3>Monthly Mortgage:</h3>
+			<p id="monthly-mortgage"></p>
+			<h3>Monthly Mortgage + Savings + Spending:</h3>
+			<p id="monthly-cost"></p>
+			<h3>Yearly Cost:</h3> 
+			<p id="yearly-cost"></p>
+		</div>
+
+	  </div>
+	</core-scaffold>
+</body>
+<script type="text/javascript" src="js/graph.js"></script>
+</html>
